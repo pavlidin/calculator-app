@@ -89,17 +89,13 @@ p{
 
 #ans {
   grid-area: ans;
-  background-color: darkgreen;
+  
 }
 
-#ans:hover,
-#ans:focus{
-  background-color: rgb(0, 71, 0);
-}
 
 #backspace {
   grid-area: backspace;
-  background-color: darkorange;
+  background-color: rgb(209, 115, 0);
 }
 #backspace:hover,
 #backspace:focus{

@@ -1,0 +1,24 @@
+{
+  "name": "calc-app",
+  "version": "1.0.0",
+  "description": "Calculator App",
+  "main": "main.js",
+  "homepahe": "https://abregre.github.io/Calculator."
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "deploy": "gh-pages -d dist"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/abregre/Calculator.git"
+  },
+  "author": "abregre-pavlidin",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/abregre/Calculator/issues"
+  },
+  "homepage": "https://github.com/abregre/Calculator#readme",
+  "dependencies": {
+    "gh-pages": "^3.1.0"
+  }
+}

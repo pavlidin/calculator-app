@@ -58,7 +58,7 @@ function ans() {
   try {
     disp.innerHTML = eval(msg.innerHTML);
   } catch (e) {
-    disp.innerHTML = "ERROR";
+    disp.innerHTML = `<p style='color: red'>Error</p>`;
     msg.innerHTML = '';
     setTimeout(() => {
       disp.innerHTML = "";

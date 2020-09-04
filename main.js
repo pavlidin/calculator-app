@@ -4,6 +4,7 @@ const disp = document.querySelector(".disp");
 const msg = document.querySelector(".msg");
 const maxDigits = 15;
 msg.innerHTML = "0";
+disp.innerHTML = 'Welcome';
 
 if (msg.innerHTML == 0) {
   for (let btn of btns) {
@@ -57,8 +58,13 @@ function ud(n) {
 function ans() {
   try {
     disp.innerHTML = eval(msg.innerHTML);
+    if (disp.innerHTML.length>11){
+      disp.classList.add('max-display');
+    } else{
+      disp.classList.remove('max-display');
+    }
   } catch (e) {
-    disp.innerHTML = "ERROR";
+    disp.innerHTML = `<div style='color: red'>Error</div>`;
     msg.innerHTML = '';
     setTimeout(() => {
       disp.innerHTML = "";

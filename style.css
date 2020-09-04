@@ -183,4 +183,7 @@ button:active {
     width: 470px;
     height: 720px;
   }
+  .disp{
+    font-size: 4rem;
+  }
 }

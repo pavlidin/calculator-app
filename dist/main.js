@@ -2,9 +2,35 @@ const btns = document.querySelectorAll("button");
 const disp = document.querySelector(".disp");
 const input = document.querySelector(".msg");
 const calc = document.querySelector(".calc");
+const switcher = document.querySelector(".switcher");
+const welcome = document.querySelector('.welcome');
+const goodbye = document.querySelector('.goodbye');
 const maxDigits = 12;
+let sw = true;
 input.innerHTML = "0";
-disp.innerHTML = "Welcome";
+
+
+// ON-OFF FUNCTIONALITY
+// den douleuei to css transition alla exei leitourgeia-(e.preventDefault;)
+switcher.addEventListener("click", (e) => {
+  e.preventDefault();
+  if(sw){
+    welcome.classList.add("secret");
+    goodbye.classList.remove("secret");
+    setTimeout(()=>goodbye.classList.add("secret"), 1000);
+    input.innerHTML = "";
+    sw= false;
+  } else{
+    goodbye.classList.add("secret");
+    welcome.classList.remove("secret");
+    setTimeout(()=>input.innerHTML = "0", 1000);
+    sw= true;
+    
+  }
+  
+});
+
+// Evaluation function
 
 function evaluation(e) {
   //If mouseevents
@@ -109,7 +135,6 @@ function ans() {
     disp.innerHTML = eval(input.innerHTML);
     if (disp.innerHTML.length > 13) {
       errorMsg("Output Overflow");
-      
     } else if (disp.innerHTML.length > 11) {
       disp.classList.add("max-display");
     } else {
@@ -117,7 +142,6 @@ function ans() {
     }
   } catch (e) {
     errorMsg("Error");
-    
   }
 }
 function clc() {
@@ -129,7 +153,6 @@ function errorMsg(msg) {
     disp.innerHTML = "Welcome";
     input.innerHTML = "0";
   }, 2000);
-  
 }
 
 // EVENTS BTN+KBRD

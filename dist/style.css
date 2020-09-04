@@ -18,27 +18,26 @@ html {
   height: 100vh;
   background-color: black;
 }
-p{
-  font-size: 2.2rem;
-  line-height: 2.2rem;
-}
 
 .disp {
   grid-area: disp;
   width: 90%;
   max-height: 90%;
-  background-color: #255505 ;
+  background-color: #255505;
   color: #000;
   display: flex;
   align-items: center;
   justify-content: center;
   border: 1px solid black;
-  font-size: 5rem;
+  font-size: 4rem;
   margin: 0 auto;
   font-family: digitalOutput;
   -webkit-box-shadow: 3px 11px 38px 0px rgba(0, 0, 0, 0.55);
   -moz-box-shadow: 3px 11px 38px 0px rgba(0, 0, 0, 0.55);
   box-shadow: 3px 11px 38px 0px rgba(0, 0, 0, 0.55);
+}
+.max-display {
+  font-size: 2rem;
 }
 
 .msg {
@@ -64,7 +63,7 @@ p{
   grid-template-rows: repeat(7, 1fr);
   grid-auto-columns: 25% 25% 25% 25%;
   padding: 0.5rem;
-  width: 370px;
+  width: 95vw;
   height: 480px;
   background-color: #3f3f3f;
   display: grid;
@@ -83,26 +82,22 @@ p{
 }
 
 #clear:hover,
-#clear:focus{
+#clear:focus {
   background-color: rgb(105, 1, 1);
 }
 
 #ans {
   grid-area: ans;
-  
 }
-
 
 #backspace {
   grid-area: backspace;
   background-color: rgb(209, 115, 0);
 }
 #backspace:hover,
-#backspace:focus{
+#backspace:focus {
   background-color: rgb(190, 105, 1);
 }
-
-
 
 #n1 {
   grid-area: n1;
@@ -166,21 +161,27 @@ button {
   -moz-box-shadow: 3px 11px 38px 0px rgba(0, 0, 0, 0.55);
   box-shadow: 3px 11px 38px 0px rgba(0, 0, 0, 0.55);
 }
-button:focus,
-button:hover {
-  background-color: #636363 ;
-  transition: all 0.2s ease-in-out;
-}
-
 button:active {
   transform: scale(0.95);
+}
+button:focus,
+button:hover {
+  background-color: #636363;
+  transition: all 0.2s ease-in-out;
   outline: none;
 }
 
 
-@media screen and (min-width: 768px){
-  .calc{
+
+@media screen and (min-width: 768px) {
+  .calc {
     width: 470px;
     height: 720px;
+  }
+  .disp {
+    font-size: 5rem;
+  }
+  .max-display {
+    font-size: 4rem;
   }
 }

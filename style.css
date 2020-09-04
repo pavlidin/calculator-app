@@ -37,7 +37,7 @@ html {
   box-shadow: 3px 11px 38px 0px rgba(0, 0, 0, 0.55);
 }
 .max-display {
-  font-size: 3.5rem;
+  font-size: 2rem;
 }
 
 .msg {
@@ -63,7 +63,7 @@ html {
   grid-template-rows: repeat(7, 1fr);
   grid-auto-columns: 25% 25% 25% 25%;
   padding: 0.5rem;
-  width: 350px;
+  width: 95vw;
   height: 480px;
   background-color: #3f3f3f;
   display: grid;
@@ -161,6 +161,9 @@ button {
   -moz-box-shadow: 3px 11px 38px 0px rgba(0, 0, 0, 0.55);
   box-shadow: 3px 11px 38px 0px rgba(0, 0, 0, 0.55);
 }
+button:active {
+  transform: scale(0.95);
+}
 button:focus,
 button:hover {
   background-color: #636363;
@@ -168,9 +171,7 @@ button:hover {
   outline: none;
 }
 
-button:active {
-  transform: scale(0.95);
-}
+
 
 @media screen and (min-width: 768px) {
   .calc {
@@ -179,5 +180,8 @@ button:active {
   }
   .disp {
     font-size: 5rem;
+  }
+  .max-display {
+    font-size: 4rem;
   }
 }

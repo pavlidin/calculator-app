@@ -30,7 +30,7 @@ html {
   align-items: center;
   justify-content: center;
   border: 1px solid black;
-  font-size: 5rem;
+  font-size: 4rem;
   margin: 0 auto;
   font-family: digitalOutput;
   -webkit-box-shadow: 3px 11px 38px 0px rgba(0, 0, 0, 0.55);
@@ -184,6 +184,6 @@ button:active {
     height: 720px;
   }
   .disp{
-    font-size: 4rem;
+    font-size: 5rem;
   }
 }

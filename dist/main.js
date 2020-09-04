@@ -108,7 +108,8 @@ function ans() {
   try {
     disp.innerHTML = eval(input.innerHTML);
     if (disp.innerHTML.length > 13) {
-      errorMsg("Error");
+      errorMsg("Output Overflow");
+      
     } else if (disp.innerHTML.length > 11) {
       disp.classList.add("max-display");
     } else {
@@ -116,17 +117,19 @@ function ans() {
     }
   } catch (e) {
     errorMsg("Error");
-    msg.innerHTML = "";
-    setTimeout(() => {
-      disp.innerHTML = "";
-    }, 1500);
+    
   }
 }
 function clc() {
   location.reload();
 }
 function errorMsg(msg) {
-  disp.innerHTML = `<div style='color: red'>${msg}</div>`;
+  disp.innerHTML = `<div style='color: red;font-size:2rem;'>${msg}</div>`;
+  setTimeout(() => {
+    disp.innerHTML = "Welcome";
+    input.innerHTML = "0";
+  }, 2000);
+  
 }
 
 // EVENTS BTN+KBRD

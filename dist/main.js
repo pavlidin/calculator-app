@@ -2,32 +2,39 @@ const btns = document.querySelectorAll("button");
 const disp = document.querySelector(".disp");
 const input = document.querySelector(".msg");
 const calc = document.querySelector(".calc");
-const switcher = document.querySelector(".switcher");
-const welcome = document.querySelector('.welcome');
-const goodbye = document.querySelector('.goodbye');
+const switcher = document.querySelector(".onoffswitch-checkbox");
+const welcome = document.querySelector(".welcome");
+const goodbye = document.querySelector(".goodbye");
+const battery = document.querySelector(".battery");
 const maxDigits = 12;
-let sw = true;
+let on = true;
 input.innerHTML = "0";
-
+inputEnabled(true);
 
 // ON-OFF FUNCTIONALITY
 // den douleuei to css transition alla exei leitourgeia-(e.preventDefault;)
 switcher.addEventListener("click", (e) => {
-  e.preventDefault();
-  if(sw){
+  if (on) {
     welcome.classList.add("secret");
     goodbye.classList.remove("secret");
-    setTimeout(()=>goodbye.classList.add("secret"), 1000);
+    setTimeout(() => {
+      goodbye.classList.add("secret");
+      battery.classList.add("secret");
+    }, 1000);
     input.innerHTML = "";
-    sw= false;
-  } else{
+    on = false;
+    inputEnabled(false);
+  } else {
     goodbye.classList.add("secret");
     welcome.classList.remove("secret");
-    setTimeout(()=>input.innerHTML = "0", 1000);
-    sw= true;
-    
+    battery.classList.remove("secret");
+    setTimeout(() => {
+      input.innerHTML = "0";
+      welcome.classList.add("secret");
+    }, 1000);
+    on = true;
+    inputEnabled(true);
   }
-  
 });
 
 // Evaluation function
@@ -157,15 +164,52 @@ function errorMsg(msg) {
 
 // EVENTS BTN+KBRD
 
-for (let btn of btns) {
-  btn.addEventListener("click", (e) => {
-    e.preventDefault();
-    evaluation(e);
-    btn.blur();
-  });
+
+//TODO: Implement Battery Drain Mode @abregre
+function batteryDrain(secs) {
+  let seconds = secs;
+  let interval = setInterval(() => {
+    if (seconds >= Math.floor(0.75 * secs)) {
+    } else if (seconds >= Math.floor(0.5 * secs)) {
+    } else if (seconds >= Math.floor(0.25 * secs)) {
+    } else if (seconds <= 0) {
+      clearInterval(interval);
+    }
+    seconds--;
+  }, seconds * 1000);
 }
 
-window.addEventListener("keydown", (e) => {
+
+console.log(on);
+
+
+
+function inputEnabled(bool) {
+
+if (bool) {
+  for (let btn of btns) {
+    btn.addEventListener("click", clicked, true);
+  }
+  
+  window.addEventListener("keydown", typed, true);
+
+} else {
+  console.log('TURNED OFF BUTTONS AND KEYBOARD')
+  for (let btn of btns) {
+    btn.removeEventListener("click", clicked, true);
+  }
+  
+  window.removeEventListener("keydown", typed, true);
+}
+}
+
+function clicked(e) {
+  e.preventDefault();
+  evaluation(e);
+  btn.blur();
+}
+
+function typed(e) {
   let keyCode = e.keyCode;
   if (
     (keyCode >= 42 && keyCode <= 57) ||
@@ -180,4 +224,4 @@ window.addEventListener("keydown", (e) => {
     keyCode == 8
   )
     evaluation(e);
-});
+}

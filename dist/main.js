@@ -165,7 +165,7 @@ function errorMsg(msg) {
 // EVENTS BTN+KBRD
 
 
-
+//TODO: Implement Battery Drain Mode @abregre
 function batteryDrain(secs) {
   let seconds = secs;
   let interval = setInterval(() => {

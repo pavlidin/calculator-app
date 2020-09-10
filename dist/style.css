@@ -155,7 +155,7 @@ html {
     "backspace n0 dec division"
     "clear ans ans ans";
 }
-#batt {
+.battery {
   width: 35px;
   position: absolute;
   left: 2.3rem;

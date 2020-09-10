@@ -101,7 +101,7 @@ html {
   grid-area: disp;
   width: 90%;
   max-height: 90%;
-  background-color: #255505;
+  background-color: #94b918;
   color: #000;
   display: flex;
   align-items: center;
@@ -113,6 +113,9 @@ html {
   -webkit-box-shadow: 3px 11px 38px 0px rgba(0, 0, 0, 0.55);
   -moz-box-shadow: 3px 11px 38px 0px rgba(0, 0, 0, 0.55);
   box-shadow: 3px 11px 38px 0px rgba(0, 0, 0, 0.55);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
 }
 .max-display {
   font-size: 2rem;
@@ -124,7 +127,7 @@ html {
   width: 90%;
   height: 90%;
   border: 1px solid black;
-  background-color: #255505;
+  background-color: #94b918;
   font-size: 3rem;
   line-height: 3rem;
   color: #000;
@@ -135,6 +138,9 @@ html {
   -webkit-box-shadow: 3px 11px 38px 0px rgba(0, 0, 0, 0.55);
   -moz-box-shadow: 3px 11px 38px 0px rgba(0, 0, 0, 0.55);
   box-shadow: 3px 11px 38px 0px rgba(0, 0, 0, 0.55);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
 }
 
 .calc {
@@ -156,11 +162,30 @@ html {
     "clear ans ans ans";
 }
 .battery {
-  width: 35px;
+  width: auto;
   position: absolute;
-  left: 2.3rem;
-  top: 3px;
+  left: 2rem;
+  top: 0.5rem;
+  display: flex;
+  align-items: center;
+  cursor: default;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
 }
+
+.battery-img {
+  width: 35px;
+  position: relative;
+}
+
+.battery-indicator {
+  font-family: digitalBtn;
+  font-weight: bold;
+  position: relative;
+  margin-left: 0.2rem;
+}
+
 #clear {
   grid-area: clear;
   background-color: #8b0000;

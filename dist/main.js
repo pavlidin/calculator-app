@@ -10,8 +10,8 @@ const batteryImg = document.querySelector(".battery-img");
 const batteryIndicator = document.querySelector(".battery-indicator");
 const maxDigits = 12;
 var on = true;
+var hasBattery = true;
 turnOn();
-
 batteryDrain(10);
 
 // ON-OFF FUNCTIONALITY
@@ -139,7 +139,6 @@ function ans() {
 }
 
 function clc() {
-  turnOff();
   turnOn();
 }
 
@@ -154,12 +153,11 @@ function errorMsg(msg) {
 // EVENTS BTN+KBRD
 
 function batteryDrain(mins) {
-  let secs = mins*60;
+  let secs = mins * 60;
   let seconds = secs;
   batteryIndicator.innerHTML = parseInt((100 * seconds) / secs) + "%";
   window.batteryInterval = setInterval(() => {
     if (on) {
-      console.log(seconds);
       seconds--;
       batteryIndicator.innerHTML = parseInt((100 * seconds) / secs) + "%";
       if (seconds > 0.75 * secs) {
@@ -176,14 +174,16 @@ function batteryDrain(mins) {
         batteryIndicator.innerHTML = 0 + "%";
         batteryImg.src = "battery0.png";
         clearInterval(batteryInterval);
+        hasBattery = false;
         disp.textContent = "LOW BAT.";
         setTimeout(() => {
-          disp.textContent = 'SHUT DOWN';
+          disp.textContent = "SHUT DOWN";
         }, 2000);
         setTimeout(() => {
           battery.classList.add("secret");
-          disp.textContent = '';
+          disp.textContent = "";
           turnOff();
+          return seconds;
         }, 5000);
       }
     }
@@ -227,25 +227,35 @@ function typed(e) {
 }
 
 function turnOn() {
-  on = true;
-  inputEnabled(true);
-  welcome.classList.remove("secret");
-  goodbye.classList.add("secret");
-  input.innerHTML = "0";
-  setTimeout(() => {
-    if (battery.classList.contains("secret")) battery.classList.remove("secret");
-    welcome.classList.add("secret");
-  }, 1000);
+  if (hasBattery) {
+    on = true;
+    inputEnabled(true);
+    welcome.classList.remove("secret");
+    goodbye.classList.add("secret");
+    input.innerHTML = "0";
+    disp.style.backgroundColor = "#94b918";
+    input.style.backgroundColor = "#94b918";
+    setTimeout(() => {
+      if (battery.classList.contains("secret"))
+        battery.classList.remove("secret");
+      welcome.classList.add("secret");
+      // preventDefault();
+    }, 1000);
+  }
 }
 
 function turnOff() {
+  switcher.click();
   on = false;
   inputEnabled(false);
-  welcome.classList.add('secret');
+  welcome.classList.add("secret");
   goodbye.classList.remove("secret");
   input.innerHTML = "";
   setTimeout(() => {
     goodbye.classList.add("secret");
-    if(!battery.classList.contains("secret")) battery.classList.add("secret");
+    disp.style.backgroundColor = "#255505";
+    input.style.backgroundColor = "#255505";
+    if (!battery.classList.contains("secret")) battery.classList.add("secret");
+    // preventDefault();
   }, 1000);
 }

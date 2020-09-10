@@ -12,7 +12,7 @@ const maxDigits = 12;
 var on = true;
 var hasBattery = true;
 turnOn();
-batteryDrain(0.1);
+batteryDrain(10);
 
 // ON-OFF FUNCTIONALITY
 switcher.addEventListener("click", (e) => {

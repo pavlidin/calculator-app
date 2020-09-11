@@ -6,34 +6,20 @@ const switcher = document.querySelector(".onoffswitch-checkbox");
 const welcome = document.querySelector(".welcome");
 const goodbye = document.querySelector(".goodbye");
 const battery = document.querySelector(".battery");
+const batteryImg = document.querySelector(".battery-img");
+const batteryIndicator = document.querySelector(".battery-indicator");
 const maxDigits = 12;
-let on = true;
-input.innerHTML = "0";
-inputEnabled(true);
+var on = true;
+var hasBattery = true;
+turnOn();
+batteryDrain(10);
 
 // ON-OFF FUNCTIONALITY
-// den douleuei to css transition alla exei leitourgeia-(e.preventDefault;)
 switcher.addEventListener("click", (e) => {
   if (on) {
-    welcome.classList.add("secret");
-    goodbye.classList.remove("secret");
-    setTimeout(() => {
-      goodbye.classList.add("secret");
-      battery.classList.add("secret");
-    }, 1000);
-    input.innerHTML = "";
-    on = false;
-    inputEnabled(false);
+    turnOff();
   } else {
-    goodbye.classList.add("secret");
-    welcome.classList.remove("secret");
-    battery.classList.remove("secret");
-    setTimeout(() => {
-      input.innerHTML = "0";
-      welcome.classList.add("secret");
-    }, 1000);
-    on = true;
-    inputEnabled(true);
+    turnOn();
   }
 });
 
@@ -151,9 +137,11 @@ function ans() {
     errorMsg("Error");
   }
 }
+
 function clc() {
-  location.reload();
+  turnOn();
 }
+
 function errorMsg(msg) {
   disp.innerHTML = `<div style='color: red;font-size:2rem;'>${msg}</div>`;
   setTimeout(() => {
@@ -164,39 +152,56 @@ function errorMsg(msg) {
 
 // EVENTS BTN+KBRD
 
-
-//TODO: Implement Battery Drain Mode @abregre
-function batteryDrain(secs) {
+function batteryDrain(mins) {
+  let secs = mins * 60;
   let seconds = secs;
-  let interval = setInterval(() => {
-    if (seconds >= Math.floor(0.75 * secs)) {
-    } else if (seconds >= Math.floor(0.5 * secs)) {
-    } else if (seconds >= Math.floor(0.25 * secs)) {
-    } else if (seconds <= 0) {
-      clearInterval(interval);
+  batteryIndicator.innerHTML = parseInt((100 * seconds) / secs) + "%";
+  window.batteryInterval = setInterval(() => {
+    if (on) {
+      seconds--;
+      batteryIndicator.innerHTML = parseInt((100 * seconds) / secs) + "%";
+      if (seconds > 0.75 * secs) {
+        batteryImg.src = "battery100.png";
+      } else if (seconds > 0.5 * secs) {
+        batteryImg.src = "battery75.png";
+      } else if (seconds > 0.25 * secs) {
+        batteryImg.src = "battery50.png";
+      } else if (seconds >= 0.1 * secs) {
+        batteryImg.src = "battery25.png";
+      } else if (seconds > 0) {
+        batteryImg.src = "battery0.png";
+      } else {
+        batteryIndicator.innerHTML = 0 + "%";
+        batteryImg.src = "battery0.png";
+        clearInterval(batteryInterval);
+        hasBattery = false;
+        disp.textContent = "LOW BAT.";
+        setTimeout(() => {
+          disp.textContent = "SHUT DOWN";
+        }, 2000);
+        setTimeout(() => {
+          battery.classList.add("secret");
+          disp.textContent = "";
+          turnOff();
+          return seconds;
+        }, 5000);
+      }
     }
-    seconds--;
-  }, seconds * 1000);
+  }, 1000);
 }
-
 
 function inputEnabled(bool) {
-
-if (bool) {
-  for (let btn of btns) {
-    btn.addEventListener("click", clicked, true);
+  if (bool) {
+    for (let btn of btns) {
+      btn.addEventListener("click", clicked, true);
+    }
+    window.addEventListener("keydown", typed, true);
+  } else {
+    for (let btn of btns) {
+      btn.removeEventListener("click", clicked, true);
+    }
+    window.removeEventListener("keydown", typed, true);
   }
-  
-  window.addEventListener("keydown", typed, true);
-
-} else {
-  console.log('TURNED OFF BUTTONS AND KEYBOARD')
-  for (let btn of btns) {
-    btn.removeEventListener("click", clicked, true);
-  }
-  
-  window.removeEventListener("keydown", typed, true);
-}
 }
 
 function clicked(e) {
@@ -220,4 +225,38 @@ function typed(e) {
     keyCode == 8
   )
     evaluation(e);
+}
+
+function turnOn() {
+  if (hasBattery) {
+    on = true;
+    inputEnabled(true);
+    welcome.classList.remove("secret");
+    goodbye.classList.add("secret");
+    input.innerHTML = "0";
+    disp.style.backgroundColor = "#94b918";
+    input.style.backgroundColor = "#94b918";
+    setTimeout(() => {
+      if (battery.classList.contains("secret"))
+        battery.classList.remove("secret");
+      welcome.classList.add("secret");
+      // preventDefault();
+    }, 1000);
+  }
+}
+
+function turnOff() {
+  switcher.click();
+  on = false;
+  inputEnabled(false);
+  welcome.classList.add("secret");
+  goodbye.classList.remove("secret");
+  input.innerHTML = "";
+  setTimeout(() => {
+    goodbye.classList.add("secret");
+    disp.style.backgroundColor = "#255505";
+    input.style.backgroundColor = "#255505";
+    if (!battery.classList.contains("secret")) battery.classList.add("secret");
+    // preventDefault();
+  }, 1000);
 }

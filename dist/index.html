@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Calculator</title>
+  </head>
+  <body>
+    
+    <div class="switcher">
+      <div class="onoffswitch">
+        <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" tabindex="0" checked>
+        <label class="onoffswitch-label" for="myonoffswitch">
+            <span class="onoffswitch-inner"></span>
+            <span class="onoffswitch-switch"></span>
+        </label>
+      </div>
+    </div>
+    
+    <div class="calc">
+      <div class="battery secret">
+      <img class="battery-img" src="battery100.png">
+      <div class="battery-indicator"></div>
+    </div>
+      <div class="disp">
+        <div class="welcome">Welcome</div>
+        <div class="goodbye secret">Goodbye</div>
+      </div>
+      <div class="msg"></div>
+      <button id="n1">1</button>
+      <button id="n2">2</button>
+      <button id="n3">3</button>
+      <button id="add">+</button>
+      <button id="n4">4</button>
+      <button id="n5">5</button>
+      <button id="n6">6</button>
+      <button id="subtr">-</button>
+      <button id="n7">7</button>
+      <button id="n8">8</button>
+      <button id="n9">9</button>
+      <button id="mult">x</button>
+      <button id="backspace">C</button>
+      <button id="n0">0</button>
+      <button id="dec">.</button>
+      <button id="division">/</button>
+      <button id="clear">CE</button>
+      <button id="ans">=</button>
+    </div>
+    <script src="main.js"></script>
+  </body>
+</html>

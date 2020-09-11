@@ -180,10 +180,6 @@ function batteryDrain(secs) {
 }
 
 
-console.log(on);
-
-
-
 function inputEnabled(bool) {
 
 if (bool) {
@@ -206,7 +202,7 @@ if (bool) {
 function clicked(e) {
   e.preventDefault();
   evaluation(e);
-  btn.blur();
+ 
 }
 
 function typed(e) {

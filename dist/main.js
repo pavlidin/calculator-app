@@ -207,7 +207,6 @@ function inputEnabled(bool) {
 function clicked(e) {
   e.preventDefault();
   evaluation(e);
- 
 }
 
 function typed(e) {
@@ -246,7 +245,7 @@ function turnOn() {
 }
 
 function turnOff() {
-  switcher.click();
+  console.log("Turned off!");
   on = false;
   inputEnabled(false);
   welcome.classList.add("secret");
@@ -257,6 +256,5 @@ function turnOff() {
     disp.style.backgroundColor = "#255505";
     input.style.backgroundColor = "#255505";
     if (!battery.classList.contains("secret")) battery.classList.add("secret");
-    // preventDefault();
   }, 1000);
 }

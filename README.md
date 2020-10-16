@@ -1,4 +1,4 @@
-<h1> Luxsio Booking platform </h1><br>
+<h1> Calculator App</h1><br>
 
 Deployment : https://abregre.github.io/_CalculatorApp/
 <br>
